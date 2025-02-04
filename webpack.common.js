@@ -20,6 +20,10 @@ const config = {
                 use: "babel-loader",
                 exclude: "/node_modules/",
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+            },
         ],
     },
     plugins: [new HtmlWebpackPlugin({ template: "./src/template.html" })],
