@@ -1,5 +1,5 @@
 import "./style.css";
-import setConditionImage from "./asets/setConditionImage.js";
+import getConditionImage from "./asets/setConditionImage.js";
 const weatherConditions = document.querySelector(".weather-info");
 const API = "HDDUWHXU3LRBLBP2TD8WGNNJV";
 const address = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline`; // + [location]/[date1]/[date2]?key=YOUR_API_KEY
@@ -30,7 +30,7 @@ function BuildInfoBlock(json) {
     console.log(json);
     weatherConditions.textContent = json["currentConditions"]["conditions"];
     const icon = document.createElement("img");
-    icon.src = setConditionImage(json["currentConditions"]["icon"]);
+    icon.src = getConditionImage(json["currentConditions"]["icon"]);
     icon.alt = json["currentConditions"]["icon"];
     weatherConditions.appendChild(icon);
 }
