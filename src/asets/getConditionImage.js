@@ -17,6 +17,7 @@ import ThunderShowersDayImage from "../images/thunder-showers-day.png";
 import RainSnowShowersDayImage from "../images/rain-snow-showers-day.png";
 import RainSnowShowersNightImage from "../images/rain-snow-showers-night.png";
 import SleetImage from "../images/sleet.png";
+
 const conditions = {
     cloudy: CloudyImage,
     "clear-night": ClearNightImage,
