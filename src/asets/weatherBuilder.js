@@ -1,8 +1,14 @@
-const unitMetrics = {
+const unitTemp = {
     metric: "℃",
     us: "℉",
     base: "K",
     uk: "℃",
+};
+const unitSpeed = {
+    metric: "km/h",
+    us: "mph",
+    base: "M/s",
+    uk: "mph",
 };
 
 class WeatherBuilder {
@@ -45,31 +51,56 @@ class WeatherBuilder {
             "div",
             this.json.currentConditions.conditions
         );
+        const h2 = CreateTextElement("h2", "Temperature next week");
         const capitalizedCity = Capitalize(this.json.address);
-
         const h3 = CreateTextElement("h3", capitalizedCity);
 
         weatherConditions.classList.add("weather-info");
-
-        weatherConditions.appendChild(h3);
-        weatherConditions.appendChild(this.createTemperatureRow());
-        weatherConditions.appendChild(this.addUnitNumbers(feelsLike));
-        weatherConditions.appendChild(condition);
-        weatherConditions.appendChild(descriptions);
+        const wind = document.createElement("div");
+        wind.textContent = `Wind Speed: ${this.json["currentConditions"]["windspeed"]}`;
+        wind.classList.add("small-text");
+        feelsLike.classList.add("small-text");
+        [
+            h3,
+            this.createTemperatureRow(),
+            this.addUnitNumbersSpeed(wind),
+            this.addUnitNumbersTemp(feelsLike),
+            condition,
+            descriptions,
+            h2,
+            this.createMiniForecast(8),
+        ].forEach((element) => {
+            weatherConditions.appendChild(element);
+        });
         return weatherConditions;
+    }
+    createMiniForecast(days) {
+        const weatherDays = document.createElement("div");
+        weatherDays.classList.add("weather-forecast");
+        for (let i = 1; i < days; i++) {
+            weatherDays.appendChild(this.BuildMiniInfoBlock(i));
+        }
+        return weatherDays;
     }
 
     createTemperatureRow() {
         const row = document.createElement("div");
         const temperature = document.createElement("h2");
+
         temperature.textContent = this.json["currentConditions"]["temp"];
-        row.appendChild(this.addUnitNumbers(temperature));
-        row.appendChild(this.createIcon());
+        row.appendChild(this.addUnitNumbersTemp(temperature));
+        row.appendChild(
+            this.createIcon(this.json["currentConditions"]["icon"])
+        );
+
         return row;
     }
-
-    addUnitNumbers(element) {
-        element.textContent += unitMetrics[this.units];
+    addUnitNumbersTemp(element) {
+        element.textContent += unitTemp[this.units];
+        return element;
+    }
+    addUnitNumbersSpeed(element) {
+        element.textContent += unitSpeed[this.units];
         return element;
     }
 
@@ -80,13 +111,29 @@ class WeatherBuilder {
         }
     }
 
-    createIcon() {
+    createIcon(condition) {
         const icon = document.createElement("img");
-        icon.src = this.getConditionIcons(
-            this.json["currentConditions"]["icon"]
-        );
-        icon.alt = this.json["currentConditions"]["icon"];
+        icon.src = this.getConditionIcons(condition);
+        icon.alt = condition;
         return icon;
+    }
+    BuildMiniInfoBlock(index) {
+        const block = document.createElement("div");
+        const img = this.createIcon(this.json.days[index]["icon"]);
+        const tempmin = CreateTextElement(
+            "div",
+            this.json.days[index]["tempmin"]
+        );
+        const tempmax = CreateTextElement(
+            "div",
+            this.json.days[index]["tempmax"]
+        );
+        const div = document.createElement("div");
+        div.appendChild(tempmin);
+        div.appendChild(tempmax);
+        block.appendChild(img);
+        block.appendChild(div);
+        return block;
     }
 }
 
