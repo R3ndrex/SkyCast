@@ -55,7 +55,12 @@ h1 {
 }
 
 footer {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #114b5f;
 }
 .weather-info {
     margin-top: 1rem;
@@ -92,4 +97,11 @@ button {
     color: #e4fde1;
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
+}
+a {
+    text-decoration: none;
+    color: #e4fde1;
+}
+a:hover {
+    color: #97d2fb;
 }
