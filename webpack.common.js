@@ -12,17 +12,21 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /\.js$/,
+                test: /\.js$/i,
                 use: "babel-loader",
                 exclude: "/node_modules/",
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: "asset/resource",
+            },
+            {
+                test: /\.html$/i,
+                use: "html-loader",
             },
         ],
     },
