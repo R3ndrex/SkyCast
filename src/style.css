@@ -14,6 +14,13 @@ body {
     justify-content: center;
     grid-template-rows: auto 1fr auto;
 }
+header {
+    margin-top: 1rem;
+    display: flex;
+}
+main {
+    width: 70ch;
+}
 input:invalid {
     border: 2px solid red;
 }
@@ -24,6 +31,72 @@ input {
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
+input,
+select {
+    border-color: #97d2fb;
+    background-color: #e4fde1;
+}
+select option:hover {
+    background-color: #97d2fb;
+}
+input::placeholder {
+    color: #97d2fb;
+}
+label {
+    color: #456990;
+}
+input:focus {
+    outline: 1px solid #456990;
+}
+h1,
+h2 {
+    color: #114b5f;
+}
+h1 {
+    margin: 0;
+}
+
 footer {
     text-align: center;
+}
+.weather-info {
+    margin-top: 1rem;
+    border: 1px solid #028090;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 1rem;
+    gap: 1rem;
+    > div {
+        height: min-content;
+        display: flex;
+        gap: 1rem;
+    }
+    > h3 {
+        margin: 0;
+    }
+}
+.weather-info :nth-child(1) {
+    grid-column: 1/-1;
+}
+.weather-info :nth-child(4) {
+    grid-column: 1/-1;
+}
+.weather-info :nth-child(5) {
+    grid-column: 1/-1;
+}
+.units-toggler {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+button {
+    border: none;
+    background-color: #456990;
+    color: #e4fde1;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
 }
