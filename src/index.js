@@ -1,8 +1,8 @@
 import "./style.css";
-import getConditionImage from "./asets/getConditionImage.js";
-import WeatherBuilder from "./asets/weatherBuilder.js";
-import WeatherWidget from "./asets/weatherWidget.js";
-import mediator from "./asets/mediator.js";
+import getConditionImage from "./assets/getConditionImage.js";
+import WeatherBuilder from "./assets/weatherBuilder.js";
+import WeatherWidget from "./assets/weatherWidget.js";
+import mediator from "./assets/mediator.js";
 
 const input = document.querySelector("input");
 const loading = document.querySelector(".loading");
