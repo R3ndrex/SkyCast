@@ -1,7 +1,6 @@
 import "./style.css";
 import getConditionImage from "./asets/setConditionImage.js";
 
-const weatherConditions = document.querySelector(".weather-info");
 const API = "HDDUWHXU3LRBLBP2TD8WGNNJV";
 const address = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline`;
 const input = document.querySelector("input");
