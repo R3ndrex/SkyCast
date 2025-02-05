@@ -44,7 +44,8 @@ input::placeholder {
 label {
     color: #456990;
 }
-input:focus {
+input:focus,
+select:focus {
     outline: 1px solid #456990;
 }
 h1,
@@ -67,6 +68,9 @@ footer {
     background-color: #114b5f;
 }
 .weather-info {
+    -webkit-box-shadow: 0px 0px 50px -25px #97d2fb;
+    -moz-box-shadow: 0px 0px 50px -25px #97d2fb;
+    box-shadow: 0px 0px 50px -25px #97d2fb;
     margin-top: 1rem;
     border: 1px solid #028090;
     border-radius: 0.5rem;
