@@ -32,6 +32,13 @@ async function GetWeather(city) {
 }
 
 function BuildInfoBlock(json) {
+    try {
+        document
+            .querySelector("main")
+            .removeChild(document.querySelector(".weather-info"));
+    } catch {}
+    const weatherConditions = document.createElement("div");
+    weatherConditions.classList.add("weather-info");
     weatherConditions.innerHTML = "";
     console.log(json);
     const condition = document.createElement("div");
@@ -44,16 +51,20 @@ function BuildInfoBlock(json) {
     const temperature = document.createElement("h2");
     temperature.textContent = json["currentConditions"]["temp"];
     const h3 = document.createElement("h3");
+
     h3.textContent =
         json["address"][0].toUpperCase() + json["address"].slice(1);
-    if (units === "metric") {
-        temperature.textContent += "℃";
-    } else {
-        temperature.textContent += "℉";
-    }
     const feelsLike = document.createElement("div");
     feelsLike.textContent =
-        "feels like" + json["currentConditions"]["feelslike"];
+        "feels like: " + json["currentConditions"]["feelslike"];
+    if (units === "metric") {
+        temperature.textContent += "℃";
+        feelsLike.textContent += "℃";
+    } else {
+        temperature.textContent += "℉";
+        feelsLike.textContent += "℉";
+    }
+
     const row = document.createElement("div");
     row.appendChild(temperature);
     row.appendChild(icon);
@@ -62,4 +73,5 @@ function BuildInfoBlock(json) {
     weatherConditions.appendChild(feelsLike);
     weatherConditions.appendChild(condition);
     weatherConditions.appendChild(descriptions);
+    document.querySelector("main").appendChild(weatherConditions);
 }
