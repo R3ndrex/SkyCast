@@ -31,7 +31,10 @@ Seearchbutton.addEventListener("click", () => {
             jsonPrevious = json;
             weatherBuilder.init(json);
         })
-        .catch((error) => CheckValidity(input, error));
+        .catch((error) => {
+            loading.classList.remove("visible");
+            CheckValidity(input, error);
+        });
 });
 
 locationButton.addEventListener("click", () => {
@@ -48,16 +51,20 @@ locationButton.addEventListener("click", () => {
                     jsonPrevious = json;
                     weatherBuilder.init(json);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => {
+                    loading.classList.remove("visible");
+                    console.error(error);
+                });
         });
     }
 });
 
 unitChanger.addEventListener("change", (e) => {
     units = e.target.value;
-    loading.classList.add("visible");
+
     weatherBuilder.units = e.target.value;
     if (jsonPrevious) {
+        loading.classList.add("visible");
         let query = /[a-zA-Z]/.test(jsonPrevious.address)
             ? `/${jsonPrevious.address}?iconSet=icons2&unitGroup=${units}`
             : `/${jsonPrevious.latitude},${jsonPrevious.longitude}?iconSet=icons2&unitGroup=${units}`;
@@ -68,7 +75,10 @@ unitChanger.addEventListener("change", (e) => {
                 jsonPrevious = json;
                 weatherBuilder.init(json);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                loading.classList.remove("visible");
+                console.error(error);
+            });
     }
 });
 
