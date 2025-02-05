@@ -35,6 +35,9 @@ select {
     color: #456990;
     border-color: #97d2fb;
 
+    -webkit-box-shadow: inset 0px 0px 50px -25px #e4fde1;
+    -moz-box-shadow: inset 0px 0px 50px -25px #e4fde1;
+    box-shadow: inset 0px 0px 50px -25px #e4fde1;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
