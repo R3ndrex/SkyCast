@@ -32,16 +32,15 @@ input:focus:invalid {
 
 input,
 select {
+    color: #456990;
     border-color: #97d2fb;
     background-color: #e4fde1;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
-select option:hover {
-    background-color: #97d2fb;
-}
+
 input::placeholder {
-    color: #97d2fb;
+    color: #456990;
 }
 label {
     color: #456990;
@@ -103,6 +102,7 @@ footer {
     text-align: end;
 }
 button {
+    cursor: pointer;
     border: none;
     background-color: #456990;
     color: #e4fde1;
@@ -113,7 +113,8 @@ a {
     text-decoration: none;
     color: #e4fde1;
 }
-a:hover {
+a:hover,
+button:hover {
     color: #97d2fb;
 }
 
