@@ -5,6 +5,7 @@ import WeatherWidget from "./asets/weatherWidget.js";
 import mediator from "./asets/mediator.js";
 
 const input = document.querySelector("input");
+const loading = document.querySelector(".loading");
 const Seearchbutton = document.querySelector(".search-button");
 let units = "metric";
 let jsonPrevious;
@@ -22,9 +23,11 @@ mediator.subscribe("ChangedUnits", () => {
 
 Seearchbutton.addEventListener("click", () => {
     input.setCustomValidity("");
+    loading.classList.add("visible");
     weatherWidget
         .getWeather(`/${input.value}?iconSet=icons2&unitGroup=${units}`)
         .then((json) => {
+            loading.classList.remove("visible");
             jsonPrevious = json;
             weatherBuilder.init(json);
         })
@@ -32,6 +35,7 @@ Seearchbutton.addEventListener("click", () => {
 });
 
 locationButton.addEventListener("click", () => {
+    loading.classList.add("visible");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             const long = position["coords"]["longitude"];
@@ -40,6 +44,7 @@ locationButton.addEventListener("click", () => {
             weatherWidget
                 .getWeather(`/${lat},${long}?iconSet=icons2&unitGroup=${units}`)
                 .then((json) => {
+                    loading.classList.remove("visible");
                     jsonPrevious = json;
                     weatherBuilder.init(json);
                 })
@@ -50,6 +55,7 @@ locationButton.addEventListener("click", () => {
 
 unitChanger.addEventListener("change", (e) => {
     units = e.target.value;
+    loading.classList.add("visible");
     weatherBuilder.units = e.target.value;
     if (jsonPrevious) {
         let query = /[a-zA-Z]/.test(jsonPrevious.address)
@@ -58,6 +64,7 @@ unitChanger.addEventListener("change", (e) => {
         weatherWidget
             .getWeather(query)
             .then((json) => {
+                loading.classList.remove("visible");
                 jsonPrevious = json;
                 weatherBuilder.init(json);
             })

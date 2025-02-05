@@ -17,8 +17,10 @@ body {
 header {
     margin-top: 1rem;
     display: flex;
+    align-items: end;
 }
 main {
+    position: relative;
     width: 70ch;
 }
 input:invalid {
@@ -52,9 +54,7 @@ h1,
 h2 {
     color: #114b5f;
 }
-h2 {
-    margin-bottom: 0.5rem;
-}
+
 h1 {
     margin: 0;
 }
@@ -87,6 +87,9 @@ footer {
     > h3 {
         margin: 0;
     }
+}
+.weather-info h2:first-of-type {
+    margin-bottom: 0.5rem;
 }
 .weather-info > div:nth-child(4) {
     margin-bottom: 1rem;
@@ -134,4 +137,16 @@ a:hover {
 .small-text {
     font-size: 0.8rem;
     color: #97d2fb;
+}
+.loading {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25%;
+    margin-inline: auto;
+    width: fit-content;
+    visibility: hidden;
+}
+.visible {
+    visibility: visible;
 }
