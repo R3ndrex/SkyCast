@@ -1,3 +1,10 @@
+const unitMetrics = {
+    metric: "℃",
+    us: "℉",
+    base: "K",
+    uk: "℃",
+};
+
 class WeatherBuilder {
     constructor(parent, getConditionIcons) {
         this.parent = parent;
@@ -11,7 +18,6 @@ class WeatherBuilder {
 
     set units(value) {
         this._units = value;
-        this.init(this.json);
     }
 
     init(json) {
@@ -20,10 +26,6 @@ class WeatherBuilder {
         this.deleteInfoBlock();
         const weatherConditions = this.buildInfoBlock();
         this.parent.appendChild(weatherConditions);
-    }
-
-    changeUnits(value) {
-        this.units = value;
     }
 
     buildInfoBlock() {
@@ -62,17 +64,7 @@ class WeatherBuilder {
     }
 
     addUnitNumbers(element) {
-        switch (this.units) {
-            case "metric":
-                element.textContent += "℃";
-                break;
-            case "base":
-                element.textContent += "K";
-                break;
-            default:
-                element.textContent += "℉";
-                break;
-        }
+        element.textContent += unitMetrics[this.units];
         return element;
     }
 
