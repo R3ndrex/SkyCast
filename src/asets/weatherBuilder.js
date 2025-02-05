@@ -17,7 +17,13 @@ class WeatherBuilder {
     }
 
     set units(value) {
+        if (this.mediator) {
+            this.mediator.emit("ChangedUnits");
+        }
         this._units = value;
+    }
+    setMediator(mediator) {
+        this.mediator = mediator;
     }
 
     init(json) {
@@ -39,9 +45,8 @@ class WeatherBuilder {
             "div",
             this.json.currentConditions.conditions
         );
-        const capitalizedCity = `${this.json.address[0].toUpperCase()} ${this.json.address.slice(
-            1
-        )}`;
+        const capitalizedCity = Capitalize(this.json.address);
+
         const h3 = CreateTextElement("h3", capitalizedCity);
 
         weatherConditions.classList.add("weather-info");
@@ -89,6 +94,10 @@ function CreateTextElement(tag, text) {
     const element = document.createElement(tag);
     element.textContent = text;
     return element;
+}
+
+function Capitalize(text) {
+    return `${text[0].toUpperCase()}${text.slice(1)}`;
 }
 
 export default WeatherBuilder;
