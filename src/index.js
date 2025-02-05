@@ -39,7 +39,6 @@ function BuildInfoBlock(json) {
     const weatherConditions = document.createElement("div");
     weatherConditions.classList.add("weather-info");
     weatherConditions.innerHTML = "";
-    console.log(json);
     const condition = document.createElement("div");
     condition.textContent = json["currentConditions"]["conditions"];
     const descriptions = document.createElement("div");
