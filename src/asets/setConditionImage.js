@@ -16,7 +16,7 @@ import ThunderShowersNightImage from "../images/thunder-showers-night.png";
 import ThunderShowersDayImage from "../images/thunder-showers-day.png";
 import RainSnowShowersDayImage from "../images/rain-snow-showers-day.png";
 import RainSnowShowersNightImage from "../images/rain-snow-showers-night.png";
-
+import SleetImage from "../images/sleet.png";
 const conditions = {
     cloudy: CloudyImage,
     "clear-night": ClearNightImage,
@@ -37,6 +37,7 @@ const conditions = {
     // those maybe not working cus, i didnt see those conditions in documentations, but there was images for it
     "rain-snow-showers-day": RainSnowShowersDayImage,
     "rain-snow-showers-night": RainSnowShowersNightImage,
+    sleet: SleetImage,
 };
 function getConditionImage(condition) {
     if (condition in conditions) {
