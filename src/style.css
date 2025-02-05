@@ -27,6 +27,7 @@ input:invalid {
 input:focus:invalid {
     outline: 1px solid red;
 }
+
 input,
 select {
     border-color: #97d2fb;
@@ -50,6 +51,9 @@ h1,
 h2 {
     color: #114b5f;
 }
+h2 {
+    margin-bottom: 0.5rem;
+}
 h1 {
     margin: 0;
 }
@@ -70,6 +74,7 @@ footer {
     flex-direction: column;
     align-items: start;
     padding: 1rem;
+    gap: 0.5rem;
     > div {
         height: min-content;
         display: flex;
@@ -79,8 +84,7 @@ footer {
         margin: 0;
     }
 }
-.weather-info :nth-child(3) {
-    color: #97d2fb;
+.weather-info > div:nth-child(4) {
     margin-bottom: 1rem;
 }
 
@@ -103,5 +107,27 @@ a {
     color: #e4fde1;
 }
 a:hover {
+    color: #97d2fb;
+}
+
+.weather-forecast {
+    margin-bottom: 1rem;
+    align-self: center;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    text-align: center;
+}
+.weather-forecast > div > div {
+    display: flex;
+    gap: 0.5rem;
+    > :nth-child(1n) {
+        color: #97d2fb;
+    }
+    > :nth-child(2n) {
+        color: #ff6b6b;
+    }
+}
+.small-text {
+    font-size: 0.8rem;
     color: #97d2fb;
 }
