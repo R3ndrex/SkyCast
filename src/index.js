@@ -56,6 +56,8 @@ locationButton.addEventListener("click", () => {
                     console.error(error);
                 });
         });
+    } else {
+        loading.classList.remove("visible");
     }
 });
 
