@@ -40,24 +40,30 @@ Seearchbutton.addEventListener("click", () => {
 locationButton.addEventListener("click", () => {
     loading.classList.add("visible");
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const long = position["coords"]["longitude"];
-            const lat = position["coords"]["latitude"];
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const long = position["coords"]["longitude"];
+                const lat = position["coords"]["latitude"];
 
-            weatherWidget
-                .getWeather(`/${lat},${long}?iconSet=icons2&unitGroup=${units}`)
-                .then((json) => {
-                    loading.classList.remove("visible");
-                    jsonPrevious = json;
-                    weatherBuilder.init(json);
-                })
-                .catch((error) => {
-                    loading.classList.remove("visible");
-                    console.error(error);
-                });
-        });
-    } else {
-        loading.classList.remove("visible");
+                weatherWidget
+                    .getWeather(
+                        `/${lat},${long}?iconSet=icons2&unitGroup=${units}`
+                    )
+                    .then((json) => {
+                        loading.classList.remove("visible");
+                        jsonPrevious = json;
+                        weatherBuilder.init(json);
+                    })
+                    .catch((error) => {
+                        loading.classList.remove("visible");
+                        console.error(error);
+                    });
+            },
+            (error) => {
+                loading.classList.remove("visible");
+                throw new Error(error.message);
+            }
+        );
     }
 });
 
